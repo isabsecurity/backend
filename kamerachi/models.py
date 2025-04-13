@@ -73,7 +73,7 @@ class TelegramAdminsID(models.Model):
 
 
 class Posts(models.Model):
-    category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='posts')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
     title=models.CharField(max_length=200)
     title_ru=models.CharField(max_length=200)
     title_en=models.CharField(max_length=200)
@@ -84,9 +84,6 @@ class Posts(models.Model):
         verbose_name = "Post listi"
         verbose_name_plural = "4. Post listi"
 
-class VideosPosts(models.Model):
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='videos')
-    video=CloudinaryField("video")
 class ImagePosts(models.Model):
     post = models.ForeignKey(Posts, related_name="images", on_delete=models.CASCADE)
     image = CloudinaryField("image")

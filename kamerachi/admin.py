@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import *
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group,User
 admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.site_header = 'E-Commerce Admin'
@@ -29,14 +29,11 @@ class ProductsAdmin(admin.ModelAdmin):
 class ImagePostsInline(admin.TabularInline):
     model = ImagePosts
     extra = 1
-class VideoPostsInline(admin.TabularInline):
-    model = VideosPosts
-    extra = 1
 
 
 class PostsAdmin(admin.ModelAdmin):
     list_display = ("title", "post_image")
-    inlines = [ImagePostsInline,VideoPostsInline]
+    inlines = [ImagePostsInline]
 
     def post_image(self, obj):
         first_image = obj.images.first()
@@ -55,3 +52,4 @@ class PostsAdmin(admin.ModelAdmin):
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(Posts, PostsAdmin)
 admin.site.unregister(Group)
+admin.site.unregister(User)
