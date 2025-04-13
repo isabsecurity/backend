@@ -56,7 +56,7 @@ class PostsListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         category_id = self.kwargs.get("category_id")
-        queryset = Posts.objects.prefetch_related("images","videos")
+        queryset = Posts.objects.prefetch_related("images")
         if category_id:
             queryset = queryset.filter(category_id=category_id)
         return queryset
