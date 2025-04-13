@@ -85,10 +85,10 @@ class Posts(models.Model):
         verbose_name_plural = "4. Post listi"
 
 class VideosPosts(models.Model):
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='posts')
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='videos')
     video=CloudinaryField("video")
 class ImagePosts(models.Model):
-    posts = models.ForeignKey(Posts, related_name="images", on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, related_name="images", on_delete=models.CASCADE)
     image = CloudinaryField("image")
 
     class Meta:
