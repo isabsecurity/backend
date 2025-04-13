@@ -1,0 +1,11 @@
+from django.urls import path
+from kamerachi.views import *
+
+urlpatterns = [
+    path("categories/", CategoryListAPIView.as_view()),
+    path("subcategories/<int:category_id>/", SubCategoryListAPIView.as_view()),
+    path("products/<int:category_id>/", ProductListAPIView.as_view()),
+    path("product-details/<int:product_id>/", ProductDetailsAPIView.as_view()),
+    path("popular-products/", PopularProducts.as_view()),
+    path("create-order/", OrderCreateAPIView.as_view()),
+]
