@@ -1,14 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import  get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import *
 from rest_framework.pagination import PageNumberPagination
+
 # Create your views here.
 
 
 class CategoryPagination(PageNumberPagination):
     page_size = 100
+
 
 class CategoryListAPIView(generics.ListAPIView):
     serializer_class = CategorySerializer
@@ -16,6 +18,8 @@ class CategoryListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return Category.objects.all()
+
+
 class SubCategoryListAPIView(generics.ListAPIView):
     serializer_class = CategorySerializer
     pagination_class = CategoryPagination
@@ -25,6 +29,7 @@ class SubCategoryListAPIView(generics.ListAPIView):
         if category_id:
             return SubCategory.objects.filter(id=category_id)
         return Category.objects.all()
+
 
 class ProductListAPIView(generics.ListAPIView):
     serializer_class = ProductsSerializer
@@ -36,6 +41,7 @@ class ProductListAPIView(generics.ListAPIView):
             queryset = queryset.filter(category_id=category_id)
         return queryset
 
+
 class ProductDetailsAPIView(generics.RetrieveAPIView):
     serializer_class = ProductsSerializer
     queryset = Products.objects.all()
@@ -43,6 +49,27 @@ class ProductDetailsAPIView(generics.RetrieveAPIView):
     def get_object(self):
         product_id = self.kwargs.get("product_id")
         return get_object_or_404(Products, pk=product_id)
+
+
+class PostsListAPIView(generics.ListAPIView):
+    serializer_class = PostsSerializer
+
+    def get_queryset(self):
+        category_id = self.kwargs.get("category_id")
+        queryset = Posts.objects.prefetch_related("images","videos")
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+        return queryset
+
+
+class PostsDetailsAPIView(generics.RetrieveAPIView):
+    serializer_class = PostsSerializer
+    queryset = Posts.objects.all()
+
+    def get_object(self):
+        post_id = self.kwargs.get("post_id")
+        return get_object_or_404(Posts, pk=post_id)
+
 
 class PopularProducts(APIView):
     serializer_class = ProductsSerializer
@@ -56,5 +83,3 @@ class PopularProducts(APIView):
 class OrderCreateAPIView(generics.CreateAPIView):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
-
-

@@ -80,6 +80,9 @@ class Posts(models.Model):
     description=models.TextField(null=True, blank=True)
     description_ru=models.TextField(null=True, blank=True)
     description_en=models.TextField(null=True, blank=True)
+    class Meta:
+        verbose_name = "Post listi"
+        verbose_name_plural = "4. Post listi"
 
 class VideosPosts(models.Model):
     post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='posts')

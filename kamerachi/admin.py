@@ -26,10 +26,32 @@ class ProductsAdmin(admin.ModelAdmin):
 
     product_image.short_description = "Rasm:"
 
+class ImagePostsInline(admin.TabularInline):
+    model = ImagePosts
+    extra = 1
+class VideoPostsInline(admin.TabularInline):
+    model = VideosPosts
+    extra = 1
+
+
+class PostsAdmin(admin.ModelAdmin):
+    list_display = ("name", "post_image")
+    inlines = [ImageProductsInline,VideoPostsInline]
+
+    def post_image(self, obj):
+        first_image = obj.images.first()
+        if first_image and first_image.image:
+            return format_html('<img src="{}" width="50" height="50" style="border-radius:5px;" />',
+                               first_image.image.url)
+        return "No Image"
+
+    post_image.short_description = "Rasm:"
+
 
 
 
 
 
 admin.site.register(Products, ProductsAdmin)
+admin.site.register(Posts, PostsAdmin)
 admin.site.unregister(Group)
