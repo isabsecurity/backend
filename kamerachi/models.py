@@ -70,3 +70,24 @@ class TelegramAdminsID(models.Model):
 
     def __str__(self):
         return self.tg_id
+
+
+class Posts(models.Model):
+    category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name='posts')
+    title=models.CharField(max_length=200)
+    title_ru=models.CharField(max_length=200)
+    title_en=models.CharField(max_length=200)
+    description=models.TextField(null=True, blank=True)
+    description_ru=models.TextField(null=True, blank=True)
+    description_en=models.TextField(null=True, blank=True)
+
+class VideosPosts(models.Model):
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='posts')
+    video=CloudinaryField("video")
+class ImagePosts(models.Model):
+    posts = models.ForeignKey(Posts, related_name="images", on_delete=models.CASCADE)
+    image = CloudinaryField("image")
+
+    class Meta:
+        verbose_name = "Rasm"
+        verbose_name_plural = "Rasmlar"
