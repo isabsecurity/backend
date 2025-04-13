@@ -96,7 +96,7 @@ class ProductsSerializer(serializers.ModelSerializer):
 
 class PostsSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
-    name = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
 
     class Meta:
@@ -107,15 +107,15 @@ class PostsSerializer(serializers.ModelSerializer):
         ]
 
 
-    def get_name(self, obj):
+    def get_title(self, obj):
         request = self.context.get("request")
         lang = request.query_params.get("lang") if request else None
 
         if lang == "ru":
-            return obj.name_ru
+            return obj.title_ru
         elif lang == "en":
-            return obj.name_en
-        return obj.name
+            return obj.title_en
+        return obj.title
 
     def get_description(self, obj):
         request = self.context.get("request")
