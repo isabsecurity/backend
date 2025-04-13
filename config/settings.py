@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # installed apps
     'corsheaders',
     'kamerachi',
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
