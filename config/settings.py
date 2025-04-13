@@ -157,7 +157,9 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     "navigation_expanded": True,
 }
-CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS')
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
 CORS_ALLOW_METHODS = [
     "GET",
     "POST",
@@ -178,4 +180,3 @@ cloudinary.config(
     api_secret=CLOUDINARY_STORAGE["API_SECRET"]
 )
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS')
