@@ -160,8 +160,8 @@ JAZZMIN_SETTINGS = {
     "navigation_expanded": True,
 }
 CORS_ALLOWED_ORIGINS = [
-    'http://isab-security.com',
-    'http://api.isab-security.com',
+    'https://isab-security.com',
+    'https://api.isab-security.com',
     "http://127.0.0.1:3000",
     "http://localhost:3000",
 ]
