@@ -1,10 +1,23 @@
-version: '3.9'
+version: "3.11"
 
 services:
-  web:
-    build: .
+  django:
+    build:
+      context: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+
+  bot:
+    build:
+      context: .
+    container_name: tg_bot
+    command: python manage.py bot
     env_file:
       - .env
     volumes:
