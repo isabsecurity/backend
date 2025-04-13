@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
-import cloudinary
-import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
 from decouple import config
@@ -26,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -159,12 +157,7 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     "navigation_expanded": True,
 }
-CORS_ALLOWED_ORIGINS = [
-    'https://isab-security.com',
-    'https://api.isab-security.com',
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-]
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS')
 CORS_ALLOW_METHODS = [
     "GET",
     "POST",
@@ -185,6 +178,4 @@ cloudinary.config(
     api_secret=CLOUDINARY_STORAGE["API_SECRET"]
 )
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-CSRF_TRUSTED_ORIGINS = [
-    "https://api.isab-security.com"
-]
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS')
