@@ -35,8 +35,8 @@ class VideoPostsInline(admin.TabularInline):
 
 
 class PostsAdmin(admin.ModelAdmin):
-    list_display = ("name", "post_image")
-    inlines = [ImageProductsInline,VideoPostsInline]
+    list_display = ("title", "post_image")
+    inlines = [ImagePostsInline,VideoPostsInline]
 
     def post_image(self, obj):
         first_image = obj.images.first()
