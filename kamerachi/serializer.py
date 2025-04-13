@@ -9,6 +9,7 @@ class ImageProductsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImageProducts
         fields = ["image"]
+
 class ImagePostsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImagePosts
@@ -50,14 +51,13 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 class ProductsSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
-    videos = serializers.SerializerMethodField()
     name = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
 
     class Meta:
         model = Products
         fields = [
-            "id", "name", "images",'videos' "description",
+            "id", "name", "images","description",
              "category"
         ]
 
@@ -86,11 +86,6 @@ class ProductsSerializer(serializers.ModelSerializer):
         return [
             self._make_https(img.image.url)
             for img in obj.images.all()
-        ]
-    def get_videos(self, obj):
-        return [
-            self._make_https(video.video.url)
-            for video in obj.videos.all()
         ]
 
     def _make_https(self, url):
