@@ -1,15 +1,15 @@
-# Base image
-FROM python:3.11-slim
+# Python 3.12 bazaviy imidj
+FROM python:3.12-slim
 
-# Working directory
+# Ishchi papka
 WORKDIR /app
 
-# Install dependencies
+# requirements.txt faylini nusxalab, kutubxonalarni o'rnatamiz
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all project files
+# Butun loyiha fayllarini konteynerga ko‘chiramiz
 COPY . .
 
-# Run both Django and bot using a custom script
-CMD ["bash", "-c", "python manage.py runserver 0.0.0.0:8000 & python manage.py bot"]
+# Django runserver va Telegram botni bir vaqtda ishga tushiramiz
+CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:8000 & python manage.py bot"]
