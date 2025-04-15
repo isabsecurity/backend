@@ -26,7 +26,9 @@ class Products(models.Model):
 
     class Meta:
         verbose_name = "Kamera listi"
-        verbose_name_plural = "3. Kameralar listi"
+        verbose_name_plural = "2. Kameralar listi"
+    def __str__(self):
+        return self.name
 
 class ImageProducts(models.Model):
     product = models.ForeignKey(Products, related_name="images", on_delete=models.CASCADE)
@@ -72,8 +74,9 @@ class Posts(models.Model):
     description_en=models.TextField(null=True, blank=True)
     class Meta:
         verbose_name = "Post listi"
-        verbose_name_plural = "4. Post listi"
-
+        verbose_name_plural = "3. Post listi"
+    def __str__(self):
+        return self.title
 class ImagePosts(models.Model):
     post = models.ForeignKey(Posts, related_name="images", on_delete=models.CASCADE)
     image = CloudinaryField("image")
