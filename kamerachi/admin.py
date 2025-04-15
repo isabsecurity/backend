@@ -4,7 +4,6 @@ from django.utils.html import format_html
 from .models import *
 from django.contrib.auth.models import Group,User
 admin.site.register(Category)
-admin.site.register(SubCategory)
 admin.site.site_header = 'E-Commerce Admin'
 
 
