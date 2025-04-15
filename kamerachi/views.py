@@ -20,15 +20,7 @@ class CategoryListAPIView(generics.ListAPIView):
         return Category.objects.all()
 
 
-class SubCategoryListAPIView(generics.ListAPIView):
-    serializer_class = CategorySerializer
-    pagination_class = CategoryPagination
 
-    def get_queryset(self):
-        category_id = self.kwargs.get("category_id")
-        if category_id:
-            return SubCategory.objects.filter(id=category_id)
-        return Category.objects.all()
 
 
 class ProductListAPIView(generics.ListAPIView):

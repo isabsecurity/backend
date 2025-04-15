@@ -32,22 +32,7 @@ class CategorySerializer(serializers.ModelSerializer):
             return obj.name_en
         return obj.name
 
-class SubCategorySerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField()
 
-    class Meta:
-        model = SubCategory
-        fields = ['id', 'name']
-
-    def get_name(self, obj):
-        request = self.context.get("request")
-        lang = request.query_params.get("lang") if request else None
-
-        if lang == "ru":
-            return obj.name_ru
-        elif lang == "en":
-            return obj.name_en
-        return obj.name
 
 class ProductsSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
