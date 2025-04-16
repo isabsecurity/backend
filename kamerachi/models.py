@@ -23,6 +23,7 @@ class Products(models.Model):
     description = models.TextField(null=True, blank=True)
     description_ru=models.TextField(null=True, blank=True)
     description_en = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "Kamera listi"
