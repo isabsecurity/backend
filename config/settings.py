@@ -160,7 +160,11 @@ JAZZMIN_SETTINGS = {
 }
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", "").split(",")
 
-CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", "").split(",")
+CORS_ALLOWED_ORIGINS = [
+    "https://isab-security.com",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+]
 CORS_ALLOW_METHODS = [
     "GET",
     "POST",
