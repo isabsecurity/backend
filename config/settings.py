@@ -160,12 +160,9 @@ JAZZMIN_SETTINGS = {
 }
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", "").split(",")
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://192.168.10.105:3000",
-    "https://isab-security.com",
-    "https://api.isab-security.com",
-]
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
     "API_KEY": config("CLOUDINARY_API_KEY"),
