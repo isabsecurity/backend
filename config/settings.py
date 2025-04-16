@@ -166,7 +166,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://isab-security.com",
     "https://api.isab-security.com",
 ]
-
+CORS_ALLOW_CREDENTIALS = True
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
     "API_KEY": config("CLOUDINARY_API_KEY"),
