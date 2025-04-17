@@ -166,6 +166,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://isab-security.com",
     "https://www.isab-security.com",
     "https://api.isab-security.com",
+    "https://frontend-production-9b53.up.railway.app",
 ]
 CORS_ALLOW_CREDENTIALS = False
 
