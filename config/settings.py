@@ -136,7 +136,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
@@ -161,12 +161,9 @@ JAZZMIN_SETTINGS = {
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", "").split(",")
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://192.168.10.105:3000",
     "https://isab-security.com",
     "https://www.isab-security.com",
     "https://api.isab-security.com",
-    "https://frontend-production-9b53.up.railway.app",
 ]
 CORS_ALLOW_CREDENTIALS = False
 
