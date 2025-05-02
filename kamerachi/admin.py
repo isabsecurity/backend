@@ -46,7 +46,7 @@ class PostsAdmin(admin.ModelAdmin):
 
 
 
-
+admin.site.register(Order)
 
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(Posts, PostsAdmin)

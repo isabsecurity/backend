@@ -63,8 +63,10 @@ class PostsDetailsAPIView(generics.RetrieveAPIView):
         return get_object_or_404(Posts, pk=post_id)
 
 
+
 class PopularProducts(APIView):
     serializer_class = ProductsSerializer
+
 
     def get(self, request):
         popular_products = Products.objects.order_by("-created_at")[:8]

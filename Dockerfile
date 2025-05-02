@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Django runserver va Telegram botni bir vaqtda ishga tushiramiz
-CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:8000 & python manage.py bot"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3 & python manage.py bot & wait"]
