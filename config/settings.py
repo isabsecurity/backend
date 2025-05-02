@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -178,3 +179,4 @@ cloudinary.config(
     api_secret=CLOUDINARY_STORAGE["API_SECRET"]
 )
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
